@@ -1,5 +1,5 @@
 # Importing the necessary libraries and modules
-from turtle import Screen
+from turtle import Turtle, Screen
 from paddle import Paddle
 from ball import Ball
 from scorecard import Scoreboard
@@ -12,12 +12,26 @@ screen.title("The Pong Game")
 screen.bgcolor("Black")
 screen.tracer(0)
 
+net = Turtle()
+net.color("White")
+net.penup()
+net.goto(0, -290)
+net.seth(90)
+for i in range(30):
+    net.pendown()
+    net.forward(20)
+    net.penup()
+    net.forward(20)
+
 # Create a new paddle
 right_pad = Paddle((350, 0))
 left_pad = Paddle((-350, 0))
 
 # Create a ball
 ball = Ball()
+
+# Create a Scorecard
+scoreCard = Scoreboard()
 
 # Event listeners for the paddle movement
 screen.listen()
@@ -45,6 +59,7 @@ while game_is_on:
     # Detection of the ball missing the paddle
     if ball.xcor() > 400:
         ball.reset_movement()
+        scoreCard.l_point()
 
     if ball.xcor() < -400:
         ball.reset_movement()
