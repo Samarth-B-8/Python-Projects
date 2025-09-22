@@ -25,3 +25,12 @@ class Scoreboard(Turtle):
     def r_point(self):
         self.r_score += 1
         self.update_scoreboard()
+
+    def winner(self):
+        self.goto(0, 0)
+        if self.l_score == 11:
+            self.write(arg="Left Paddle Wins The Game", align="center", font=("Courier", 25, "normal"))
+        elif self.r_score == 11:
+            self.write(arg="Right Paddle Wins the Game", align="center", font=("Courier", 25, "normal"))
+        else:
+            pass
