@@ -36,6 +36,13 @@ class Snake:
     def extend_body(self):
         self.add_segments(position=self.segments[-1].position())
 
+    def reset_snake(self):
+        for seg in self.segments:
+            seg.goto(2000,2000)
+        self.segments.clear()
+        self.create_snake()
+        self.head = self.segments[0]
+
     # function to control the movement of the complete body
     def move(self):
         for seg_num in range(len(self.segments)-1, 0, -1):

@@ -33,6 +33,7 @@ screen.onkey(fun=snake.left, key="Left")
 # Displays the status of the game (Gives the condition for the while loop)
 is_game_on = True
 
+
 while is_game_on:
     screen.update()
     time.sleep(0.1)
@@ -44,16 +45,17 @@ while is_game_on:
         snake.extend_body()
         scoreBoard.increment()
         # print(scoreBoard.score)
-    
+        
     # Detecting the snake if it hits the wall
     if snake.head.xcor() > 280 or snake.head.xcor() < -300 or snake.head.ycor() > 300 or snake.head.ycor() < -280:
-        scoreBoard.game_over()
-        is_game_on = False
+        scoreBoard.reset_game()
+        snake.reset_snake()
+
 
     for segment in snake.segments[1:]:
         if snake.head.distance(segment) < 10:
-            scoreBoard.game_over()
-            is_game_on = False
+            scoreBoard.reset_game()
+            snake.reset_snake()
 
 
 # Setting the closing condition of the window
